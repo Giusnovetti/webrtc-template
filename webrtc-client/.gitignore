@@ -1,0 +1,21 @@
+# Angular build output
+/dist
+/out-tsc
+/build
+
+# Dependencies
+node_modules
+
+# Logs
+*.log
+
+# IDE / system
+.DS_Store
+Thumbs.db
+
+# Angular specific
+.angular/cache
+.angular/server
+
+# SSL certs (if they are self-signed dev certs)
+certs/
