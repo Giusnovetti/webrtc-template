@@ -2,7 +2,7 @@ import { WebSocketServer } from 'ws';
 
 const wss = new WebSocketServer({ port: 8080, host : '0.0.0.0' });
 
-// Map<sessionId, Set<WebSocket>>
+
 const sessions = new Map();
 
 wss.on('connection', (ws) => {
@@ -12,18 +12,18 @@ wss.on('connection', (ws) => {
         const data = JSON.parse(msg.toString());
         console.log('Received message:', data)
 
-        // JOIN: il client entra in una sessione
+
         if (data.type === 'join') {
             sessionId = data.sessionId;
             if (!sessions.has(sessionId)) {
                 sessions.set(sessionId, new Set());
             }
             sessions.get(sessionId).add(ws);
-            console.log(`Client entrato in sessione: ${sessionId}`);
+            console.log(`Client joined session on: ${sessionId}`);
             return;
         }
 
-        // OFFER / ANSWER / CANDIDATE → inoltra agli altri peer della sessione
+
         if (['offer', 'answer', 'candidate'].includes(data.type)) {
             const peers = sessions.get(sessionId);
             if (peers) {
@@ -42,9 +42,9 @@ wss.on('connection', (ws) => {
             if (sessions.get(sessionId).size === 0) {
                 sessions.delete(sessionId);
             }
-            console.log(`Client uscito da sessione: ${sessionId}`);
+            console.log(`Client exiting from session: ${sessionId}`);
         }
     });
 });
 
-console.log('🚀 Signaling server WebSocket in ascolto su ws://0.0.0.0:8080');
+console.log('Signaling server UP!') ;
