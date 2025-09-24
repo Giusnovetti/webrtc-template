@@ -11,3 +11,9 @@ This project is designed as a minimal starting point for building video calling 
 - Angular client with basic call UI
 - WebSocket-based signaling server in TypeScript
 
+#Contributing
+
+If you’d like to improve this template, feel free to:
+- Open a pull request with bug fixes or improvements
+- Propose new features or enhancements by opening an issue
+- Improve documentation or add examples
